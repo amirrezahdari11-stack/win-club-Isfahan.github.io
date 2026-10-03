@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WIN</title>
+<meta name="theme-color" content="#060c17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="WIN">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<style>
+@font-face{font-family:Vazirmatn;src:url(vazirmatn.woff2) format('woff2');font-weight:100 900;font-display:swap}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#efe9dc;--felt:#e4dccb;--card:#fbf8f1;--tx:#1d2a24;--mut:#6c7369;--bd:#d3cab5;--brass:#9a7420;--mf:#8f1d2c;--ci:#1d5a55;--btn:#1d2a24;--btnt:#fbf8f1}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f211b;--felt:#163127;--card:#f3ecdc;--tx:#efe9dc;--mut:#9fb0a5;--bd:#27473b;--brass:#d2ac55;--mf:#a9283a;--ci:#1d6d66;--btn:#d2ac55;--btnt:#10231d}}
+:root[data-theme="dark"]{--bg:#0f211b;--felt:#163127;--card:#f3ecdc;--tx:#efe9dc;--mut:#9fb0a5;--bd:#27473b;--brass:#d2ac55;--mf:#a9283a;--ci:#1d6d66;--btn:#d2ac55;--btnt:#10231d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,"Segoe UI",sans-serif;line-height:1.7;min-height:100vh}
+main{max-width:480px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:25px;font-weight:800;margin:6px 0 4px}
+.sub{color:var(--mut);margin:0 0 18px;font-size:14px}
+.box{background:var(--felt);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.opts{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.opts.g .opt{flex:1 1 44%}
+.opt{flex:1;padding:10px;border-radius:12px;border:1px solid var(--bd);background:var(--felt);color:var(--tx);font:inherit;text-align:center;cursor:pointer}
+.opt b{display:block;font-size:17px}.opt small{color:var(--mut);font-size:12px}
+.opt[aria-pressed="true"]{border:2px solid var(--brass);background:var(--card);color:#1d2a24}
+.opt[aria-pressed="true"] small{color:#5a5f56}
+.chip{flex:0 0 auto;padding:6px 18px;border-radius:99px}
+.rl{padding:9px 0;border-bottom:1px solid var(--bd)}
+.rl:last-child{border:0}
+.rn{font-weight:600}.rd{font-size:12px;color:var(--mut);line-height:1.5}
+.tag{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:7px}
+.tx{background:var(--brass)}.tm{background:var(--mf)}.tc{background:var(--ci)}
+.cnt{font-weight:800;font-size:18px;min-width:32px;text-align:center}
+button:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.btn{width:100%;padding:14px;border:0;border-radius:12px;background:var(--btn);color:var(--btnt);font:inherit;font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--brass);font-weight:600}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.scene{perspective:900px;margin:18px auto;width:min(280px,80%);aspect-ratio:5/7}
+.card{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;border:2px solid var(--brass)}
+.back{background:radial-gradient(circle at 50% 42%,#1a2a45,#060c17 78%);color:#b9c7bd;border-color:#d2ac55;box-shadow:inset 0 0 0 6px #060c17,inset 0 0 0 7px #d2ac5566}
+.back small{font-weight:400;color:#b9c7bd;margin-top:6px;font-size:13px}
+.st{position:absolute;color:#d2ac55;font-size:15px;line-height:1}
+.s1{top:16px;right:18px}.s2{top:16px;left:18px}.s3{bottom:16px;right:18px}.s4{bottom:16px;left:18px}
+.ring{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:6px 0;border:2px solid #d2ac55;box-shadow:0 0 0 5px #0e2119,0 0 0 6px #d2ac5577,0 0 28px #d2ac5533}
+.front{background:var(--card);color:#1d2a24;transform:rotateY(180deg)}
+.front .team{font-size:13px;font-weight:600;color:#fff;padding:2px 12px;border-radius:99px;margin-bottom:12px}
+.front h2{margin:0 0 10px;font-size:28px;font-weight:800}
+.front p{margin:0;font-size:13px;line-height:1.7}
+.prog{text-align:center;color:var(--mut);font-size:14px}
+ul{list-style:none;padding:0;margin:0}
+.list li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd)}
+.tt{background:none;border:0;color:var(--mut);font:inherit;font-size:13px;cursor:pointer;float:left}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+.win{font-family:'Playfair Display',Georgia,serif;font-size:46px;font-weight:900;letter-spacing:3px;direction:ltr;background:linear-gradient(180deg,#f8e29a,#cfa540 55%,#8a6417);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 rgba(0,0,0,.45))}
+.bar{height:4px;background:var(--bd);border-radius:4px;margin:12px auto 0;width:min(280px,80%);overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--brass);transform:scaleX(0);transform-origin:right}
+.bar i.go{animation:drain 2s linear forwards}
+@keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.sign{width:92%;height:auto;margin:10px 0;filter:drop-shadow(0 0 10px rgba(255,238,196,.75)) drop-shadow(0 0 26px rgba(255,226,160,.4))}
+input,select{width:100%;padding:10px 12px;margin-bottom:8px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:#1d2a24;font:inherit}
+.del{background:none;border:0;color:var(--mf);font:inherit;font-size:12px;cursor:pointer;padding:0 6px}
+.sum{font-weight:600;margin:4px 0}
+</style>
+</head>
+<body>
+<main>
+<button class="tt" onclick="theme()" aria-label="تغییر پوسته">🌓</button>
+<h1 style="letter-spacing:4px;direction:ltr;text-align:right">WIN</h1>
+<p class="sub">پخش نقش مافیا؛ سناریو و تعداد نفرات را انتخاب کن.</p>
+<div id="app"></div>
+</main>
+<script>
+const R={
+bBoss:['رئیس مافیا','m','سرگروه مافیا؛ استعلامش منفی است. به‌جای شات می‌تواند سوداگری کند و یک شهروند ساده یا رویین‌تن را به مافیا بیاورد.'],
+bNato:['ناتو','m','شبی که مافیا شات نمی‌زند، نقش یک شهروندِ توانادار را حدس می‌زند؛ اگر درست باشد از بازی خارج می‌شود.'],
+bImp:['شیاد','m','هر شب یک نفر را انتخاب می‌کند؛ اگر کارآگاه باشد، استعلام‌هایش برعکس اعلام می‌شود.'],
+bMaf:['مافیای ساده','m','عضو ساده تیم مافیا؛ در شات شب شرکت می‌کند.'],
+bDet:['کارآگاه','c','هر شب استعلام یک نفر را می‌گیرد؛ استعلام رئیس مافیا منفی است.'],
+bDoc:['پزشک','c','هر شب یک نفر را نجات می‌دهد؛ در کل بازی دو بار می‌تواند خودش را نجات دهد.'],
+bInv:['بازپرس','c','هر شب دو نفر را انتخاب می‌کند تا روز بعد وارد بازپرسی شوند و بعد از دفاعیه، تصمیم می‌گیرد رأی‌گیری شود یا نه.'],
+bRes:['محقق','c','هر شب یک نفر را به خودش گره می‌زند؛ اگر شیاد یا ناتو باشد، با خروج محقق او هم خارج می‌شود.'],
+bIron:['رویین‌تن','c','از شات شب جان سالم به در می‌برد، اما با رأی روز خارج می‌شود.'],
+bSnp:['تک‌تیرانداز','c','یک بار در بازی شلیک می‌کند؛ اگر به شهروند بزند خودش خارج می‌شود.'],
+bCit:['شهروند ساده','c','توانایی شبانه ندارد؛ با استدلال و رأی به شهر کمک می‌کند.'],
+nDon:['دن مافیا','m','استعلامش منفی است؛ با «رأی خیانت» رأی تارگت یکی از نماینده‌ها را یکی کم یا زیاد می‌کند.'],
+nRebel:['یاغی','m','رتبه دو مافیا؛ با خروج دن یا هکر تبدیل به ترور می‌شود و می‌تواند یک نفر را با خود ببرد.'],
+nHack:['هکر','m','هر شب توانایی یک نفر را از کار می‌اندازد.'],
+nNato:['ناتو','m','در بازی ۱۲ و ۱۳ نفره، ناتویی تیم مافیا به عهده اوست.'],
+nDoc:['دکتر','c','هر شب یک نفر را نجات می‌دهد؛ در کل بازی دو بار می‌تواند خودش را نجات دهد.'],
+nGuide:['راهنما','c','یک نفر را انتخاب می‌کند؛ اگر شهروند باشد استعلام می‌گیرد، اگر مافیا باشد آن شخص راهنما را می‌شناسد.'],
+nMine:['مین‌گذار','c','یک بار برای محافظت از یک نفر مین می‌گذارد؛ اگر مافیا او را شات کند، مین فعال می‌شود.'],
+nLaw:['وکیل','c','یک بار می‌تواند مانع ورود یک نفر به دفاعیه شود.'],
+nGuard:['محافظ','c','هر شب از یک نفر در برابر ترور محافظت می‌کند؛ خودش هم در برابر ترور ایمن است.'],
+nSol:['سرباز','c','شب تیرش را به یک شهروند می‌دهد تا تک‌تیرانداز شود.'],
+nCit:['شهروند ساده','c','توانایی شبانه ندارد؛ با استدلال و رأی به شهر کمک می‌کند.'],
+mBoss:['رئیس مافیا','m','استعلامش منفی است و تصمیم شات شب با اوست؛ فقط با رأی روز خارج می‌شود.'],
+mNeg:['مذاکره‌کننده','m','اگر حداقل یک هم‌تیمی‌اش خارج شده باشد، یک بار به یک شهروند ساده (یا زره‌پوشِ زره‌افتاده) پیشنهاد پیوستن به مافیا می‌دهد.'],
+mMaf:['مافیای ساده','m','شب‌ها به رئیس مافیا مشورت می‌دهد و روز خودش را شهروند نشان می‌دهد.'],
+mDoc:['پزشک','c','هر شب یک نفر (تا وقتی ۸ نفر یا بیشتر زنده‌اند، دو نفر) را نجات می‌دهد؛ دو بار می‌تواند خودش را نجات دهد.'],
+mDet:['کارآگاه','c','هر شب استعلام یک نفر را می‌گیرد؛ استعلام رئیس مافیا منفی است.'],
+mRep:['خبرنگار','c','از شب مذاکره به بعد می‌تواند بپرسد کسی مذاکره شده یا نه.'],
+mArm:['زره‌پوش','c','زره او را از شات شب حفظ می‌کند؛ با اولین شات زره می‌افتد و شهروند ساده می‌شود.'],
+mSnp:['تک‌تیرانداز','c','یک تیر دارد؛ اگر شهروند را بزند خودش خارج می‌شود و اگر رئیس مافیا را بزند کسی خارج نمی‌شود.'],
+mCit:['شهروند ساده','c','توانایی شبانه ندارد؛ با استدلال و رأی به شهر کمک می‌کند.'],
+kBoss:['رئیس مافیا','m','استعلامش منفی است و تصمیم شات شب با اوست.'],
+kNato:['ناتو','m','یک شب با تأیید رئیس مافیا نقش دقیق یک شهروند را حدس می‌زند.'],
+kHost:['گروگانگیر','m','یارانش را می‌شناسد اما شب‌ها جدا بیدار می‌شود و هر شب یک شهروند را گروگان می‌گیرد.'],
+kGuard:['نگهبان','c','اول از همه بیدار می‌شود و از نقش یک یا دو نفر در برابر گروگانگیر نگهبانی می‌کند.'],
+kDet:['کارآگاه','c','هر شب استعلام یک نفر را می‌گیرد؛ استعلام رئیس مافیا منفی است.'],
+kDoc:['پزشک','c','هر شب یک نفر (تا وقتی ۸ نفر یا بیشتر زنده‌اند، دو نفر) را نجات می‌دهد؛ دو بار می‌تواند خودش را نجات دهد.'],
+kRng:['تکاور','c','وقتی مافیا او را شات کند، حق تک‌تیراندازی دارد؛ اگر درست بزند در بازی می‌ماند.'],
+kGun:['تفنگدار','c','تفنگ (مشقی یا جنگی) به بازیکنان می‌دهد؛ گیرنده از نوع تفنگ خبر ندارد.'],
+kCit:['شهروند ساده','c','توانایی شبانه ندارد؛ با استدلال و رأی به شهر کمک می‌کند.'],
+cM:['مافیای ساده','m','عضو ساده تیم مافیا؛ شب‌ها در شات شرکت می‌کند.'],
+cDoc:['دکتر','c','هر شب یک نفر را از شات مافیا نجات می‌دهد.'],
+cCit:['شهروند ساده','c','توانایی شبانه ندارد؛ با استدلال و رأی به شهر کمک می‌کند.'],
+rM:['مافیای ساده','m','در مافیای روسی نقش دیگری وجود ندارد؛ هم‌تیمی‌هایت را با استدلال پیدا کن.'],
+rC:['شهروند ساده','c','مافیاها را با صحبت و استدلال پیدا کن.'],
+gFa:['پدرخوانده','m','رهبر مافیا؛ استعلامش منفی است.'],
+gSa:['ساول گودمن','m','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.'],
+gMa:['ماتادور','m','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.'],
+gWa:['دکتر واتسون','c','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.'],
+gKa:['همشهری کین','c','می‌تواند استعلام یک مافیا را بگیرد؛ اگر درست باشد، روز بعد آن مافیا به همه اعلام می‌شود.'],
+gLe:['لئون حرفه‌ای','c','تنها مسلح شهر است؛ اگر اشتباه شلیک کند، خودش بیرون می‌رود.'],
+gCo:['کنستانتین','c','می‌تواند یکی از کشته‌شدگان را به بازی برگرداند (احضار روح).'],
+gNo:['نوستراداموس','x','نقش مستقل؛ شب اول استعلام سه نفر را می‌گیرد و می‌فهمد چند مافیا بینشان است، بعد تیمش را انتخاب می‌کند.'],
+gCi:['شهروند ساده','c','توانایی شبانه ندارد؛ با استدلال و رأی به شهر کمک می‌کند.'],
+aCu:['مشتری','x','نقش مستقل؛ در طول بازی باید به تیم نجات یا گشتاپو ملحق شود.'],
+aPi:['خلبان','c','هدف گشتاپو زنده دستگیر کردن اوست.','تیم پارتیزان'],
+aCr:['کرتیس','c','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.','تیم پارتیزان'],
+aPa:['دکتر پاسکال','c','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.','تیم پارتیزان'],
+aRe:['مامور نجات','c','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.','تیم پارتیزان'],
+aKe:['سرهنگ کسلر','m','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.','تیم گشتاپو'],
+aRn:['راینهارت','m','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.','تیم گشتاپو'],
+aGe:['گشتاپوی ساده','m','عضو این تیم؛ توانایی نقش را گرداننده توضیح می‌دهد.','تیم گشتاپو']
+};
+const bz10=[['bBoss',1],['bNato',1],['bImp',1],['bDet',1],['bDoc',1],['bInv',1],['bRes',1],['bIron',1],['bCit',2]];
+const nm10=[['nDon',1],['nRebel',1],['nHack',1],['nDoc',1],['nGuide',1],['nMine',1],['nLaw',1],['nGuard',1],['nCit',2]];
+const mz10=[['mBoss',1],['mNeg',1],['mMaf',1],['mDoc',1],['mDet',1],['mRep',1],['mArm',1],['mSnp',1],['mCit',2]];
+const tk10=[['kBoss',1],['kNato',1],['kHost',1],['kGuard',1],['kDet',1],['kDoc',1],['kRng',1],['kGun',1],['kCit',2]];
+const SC={
+moz:{n:'مذاکره‌کننده',s:'سناریوی تی‌وی',z:{10:mz10}},
+tak:{n:'تکاور',s:'سناریوی تی‌وی',z:{10:tk10}},
+baz:{n:'بازپرس',s:'سناریوی تی‌وی',z:{10:bz10,12:[...bz10,['bSnp',1],['bMaf',1]]}},
+cls:{n:'کلاسیک',s:'مافیای ساده',z:{12:[['cM',4],['cDoc',1],['cCit',7]]}},
+rus:{n:'مافیای روسی',s:'یک‌سوم مافیا',z:{6:[['rM',2],['rC',4]],9:[['rM',3],['rC',6]],12:[['rM',4],['rC',8]],15:[['rM',5],['rC',10]]}},
+god:{n:'پدرخوانده',s:'نقش مستقل',z:{11:[['gFa',1],['gSa',1],['gMa',1],['gWa',1],['gKa',1],['gLe',1],['gCo',1],['gNo',1],['gCi',3]]}},
+arm:{n:'ارتش سری',s:'نقش مستقل',z:{10:[['aCu',2],['aPi',1],['aCr',1],['aPa',1],['aRe',2],['aKe',1],['aRn',1],['aGe',1]]}},
+cus:{n:'+ سناریوی جدید',s:'بساز و ذخیره کن',z:{}},
+nam:{n:'نماینده',s:'سناریوی دن',z:{10:nm10,12:[...nm10,['nNato',1],['nSol',1]],13:[...nm10.slice(0,8),['nNato',1],['nSol',1],['nCit',3]]}}
+};
+const TN={c:'تیم شهر',m:'تیم مافیا',x:'مستقل'},TC={c:'ci',m:'mf',x:'brass'},fa=n=>Number(n).toLocaleString('fa-IR');
+const bar=(x1,y1,x2,y2,w,p=28)=>`<polygon points="${x1},${y1-p} ${x1+w},${y1} ${x2+w},${y2} ${x2},${y2+p} ${x2-w},${y2} ${x1-w},${y1}"/>`;
+const WINSVG=`<svg class="sign" viewBox="40 0 980 540" aria-label="WIN" role="img"><defs>
+<linearGradient id="wm" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="540"><stop offset="0" stop-color="#fffdf4"/><stop offset=".6" stop-color="#fbeec3"/><stop offset="1" stop-color="#efd58a"/></linearGradient>
+<pattern id="gl" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="8" cy="12" r="3.5" fill="#fff"/><circle cx="30" cy="5" r="2.5" fill="#d8b866"/><circle cx="50" cy="20" r="3.5" fill="#fff"/><circle cx="18" cy="38" r="3" fill="#cfa84a"/><circle cx="42" cy="46" r="3.5" fill="#fff"/><circle cx="56" cy="56" r="2.5" fill="#e8cf8a"/><circle cx="5" cy="52" r="2.5" fill="#fff"/><circle cx="33" cy="28" r="2" fill="#b98f34"/></pattern>
+<g id="shp">${bar(110,90,200,470,42)}${bar(285,130,200,470,42)}${bar(285,130,370,470,42)}${bar(455,90,370,470,42)}<polygon points="562,30 622,110 616,400 566,500 508,400 502,110"/>${bar(690,110,685,470,38)}${bar(690,110,830,470,40)}${bar(960,70,830,470,40)}</g></defs>
+<use href="#shp" x="18" y="14" fill="#cfc8b5" stroke="#cfc8b5" stroke-width="6" stroke-linejoin="round"/>
+<use href="#shp" fill="#e2b04a" stroke="#e2b04a" stroke-width="14" stroke-linejoin="round"/>
+<use href="#shp" fill="url(#wm)"/>
+<g opacity=".55"><use href="#shp" fill="url(#gl)"/></g></svg>`;
+let S={pub:true,bld:{name:'',roles:[]},bd:{n:'',t:'c',c:1,ds:''},sc:'moz',z:10,order:[],i:0,flip:false,phase:'setup',list:false};
+function ri(k){const a=new Uint32Array(1),lim=Math.floor(4294967296/k)*k;do{crypto.getRandomValues(a)}while(a[0]>=lim);return a[0]%k}
+function shuffle(){
+  const arr=[];SC[S.sc].z[S.z].forEach(([id,c])=>{for(let j=0;j<c;j++)arr.push(R[id])});
+  for(let j=arr.length-1;j>0;j--){const k=ri(j+1);[arr[j],arr[k]]=[arr[k],arr[j]]}
+  Object.assign(S,{order:arr,i:0,flip:false,list:false,phase:'reveal'});render();
+}
+function pickSc(k){S.sc=k;S.z=+Object.keys(SC[k].z)[0]||0;render()}
+let USER=[];
+const h=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function clean(u){if(!u||typeof u.n!=='string'||!Array.isArray(u.roles))return null;
+ const roles=u.roles.slice(0,30).map(r=>r&&typeof r.n==='string'&&r.n.trim()?{n:r.n.trim().slice(0,30),t:['c','m','x'].includes(r.t)?r.t:'c',c:Math.max(1,Math.min(20,parseInt(r.c)||1)),d:typeof r.d==='string'?r.d.trim().slice(0,200):''}:null).filter(Boolean);
+ if(!u.n.trim()||!roles.length)return null;return{n:u.n.trim().slice(0,40),roles}}
+function regUser(u,label,own){const l=[];u.roles.forEach((r,j)=>{const id=u.id+'_'+j;R[id]=[h(r.n),r.t,h(r.d||'توضیح این نقش را گرداننده می‌دهد.')];l.push([id,r.c])});SC[u.id]={n:h(u.n),s:label||'سناریوی من',u:own===false?0:1,z:{[u.roles.reduce((a,r)=>a+r.c,0)]:l}}}
+function loadUser(){try{USER=(JSON.parse(localStorage.getItem('win.sc')||'[]')||[]).map(u=>{const c=clean(u);if(c)c.id=String(u.id||'u'+Date.now()+Math.random().toString(36).slice(2,6));return c}).filter(Boolean);USER.forEach(u=>regUser(u))}catch(e){USER=[]}}
+// آدرس HTTPS سرور اشتراک سناریو (api.php یا worker.js). خالی = بدون همگام‌سازی آنلاین
+const SYNC_DEFAULT='';
+let SYNC_URL=SYNC_DEFAULT;try{SYNC_URL=localStorage.getItem('win.srv')||SYNC_DEFAULT}catch(e){}
+S.pub=!!SYNC_URL;
+// آدرس فایل scenarios.json روی GitHub Pages (فقط خواندنی). مثال: https://name.github.io/win/scenarios.json
+const CATALOG_DEFAULT='';
+// سناریوهای پیش‌فرض: هر سناریو را به این شکل اینجا اضافه کن (خروجی دکمه‌ی «کپی JSON» همین قالب است):
+// {"n":"نام سناریو","roles":[{"n":"نقش","t":"m","c":1,"d":"توضیح"},{"n":"شهروند","t":"c","c":3,"d":""}]}   (t: c=شهر، m=مافیا، x=مستقل)
+const DEFAULTS=[];
+function applyCat(list){Object.keys(SC).filter(k=>k.startsWith('cat')).forEach(k=>delete SC[k]);const names=DEFAULTS.map(u=>u&&u.n);const extra=(Array.isArray(list)?list:[]).slice(0,50).filter(u=>u&&!names.includes(u.n));const all=DEFAULTS.map(u=>[u,'سناریوی WIN']).concat(extra.map(u=>[u,'مشترک']));all.forEach(([u,l],i)=>{const c=clean(u);if(c){c.id='cat'+i;regUser(c,l,false);SC[c.id].sid=u&&u.id}});if(!SC[S.sc]){S.sc='moz';S.z=10}}
+function loadCatalog(){
+  {let c=[];try{c=JSON.parse(localStorage.getItem('win.cat')||'[]')}catch(e){}applyCat(c)}
+  try{fetch(SYNC_URL||CATALOG_DEFAULT||'scenarios.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(l=>{try{localStorage.setItem('win.cat',JSON.stringify(l))}catch(e){}applyCat(l);if(S.phase==='setup')render()}).catch(()=>{})}catch(e){}
+}
+function adminKey(ask){let k='';try{k=localStorage.getItem('win.key')||''}catch(e){}if(!k&&ask){k=prompt('رمز ناظر را وارد کن:')||'';if(k)try{localStorage.setItem('win.key',k)}catch(e){}}return k}
+async function api(body){const k=adminKey(true);if(!k||!SYNC_URL)throw 0;const r=await fetch(SYNC_URL,{method:'POST',headers:{'Content-Type':'application/json','X-Key':k},body:JSON.stringify(body)});
+ if(r.status===403){try{localStorage.removeItem('win.key')}catch(e){}throw 1}if(!r.ok)throw 2;return r.json()}
+async function publishCur(){const u=curUser();if(!u)return;
+ if(!SYNC_URL){alert('سرور اشتراک تنظیم نشده. آدرس HTTPS سرور را در صفحه‌ی «+ سناریوی جدید» (پایین) وارد کن؛ راهنمایش داخل WIN-server.zip است.');return}
+ try{const l=await api({op:'add',n:u.n,roles:u.roles});USER=USER.filter(x=>x.id!==u.id);delete SC[u.id];saveUser();try{localStorage.setItem('win.cat',JSON.stringify(l))}catch(e){}applyCat(l);
+  const m=Object.keys(SC).find(k=>k.startsWith('cat')&&SC[k].n===h(u.n));alert('برای همه ثبت شد؛ هر گوشی بار بعدی که اپ را با اینترنت باز کند، آن را می‌گیرد.');pickSc(m||'moz')}
+ catch(e){alert(e===1?'رمز ناظر اشتباه است.':e===0?'رمز ناظر لازم است.':'ثبت نشد؛ اینترنت و آدرس سرور را بررسی کن. سناریو روی همین گوشی ذخیره ماند.')}}
+async function delShared(){const sid=SC[S.sc]&&SC[S.sc].sid;if(!sid||!confirm('از همه‌ی گوشی‌ها حذف شود؟'))return;
+ try{const l=await api({op:'del',id:sid});try{localStorage.setItem('win.cat',JSON.stringify(l))}catch(e){}applyCat(l);pickSc('moz')}catch(e){alert(e===1?'رمز ناظر اشتباه است.':'حذف نشد.')}}
+function setSrv(){const v=(document.getElementById('srv').value||'').trim();
+ if(v&&!/^(https:\/\/|http:\/\/localhost)/.test(v)){alert('آدرس باید با https:// شروع شود.');return}
+ try{if(v)localStorage.setItem('win.srv',v);else localStorage.removeItem('win.srv')}catch(e){}
+ SYNC_URL=v||SYNC_DEFAULT;S.pub=!!SYNC_URL;loadCatalog();alert(v?'آدرس سرور ذخیره شد.':'آدرس سرور پاک شد.');render()}
+function copyCatalog(){let c=[];try{c=JSON.parse(localStorage.getItem('win.cat')||'[]')}catch(e){}if(!Array.isArray(c))c=[];const names=new Set(c.map(x=>x.n));
+ const all=c.map(x=>({n:x.n,roles:x.roles})).concat(USER.filter(u=>!names.has(u.n)).map(u=>({n:u.n,roles:u.roles})));
+ copyText(JSON.stringify(all,null,1),'کاتالوگ کامل کپی شد؛ کل محتوای scenarios.json را با آن جایگزین کن.')}
+function copyText(t,msg){
+  if(navigator.share&&/Android|iPhone|iPad/i.test(navigator.userAgent)){navigator.share({text:t}).catch(()=>{});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>alert(msg)).catch(()=>prompt('این متن را کپی کن:',t))}else prompt('این متن را کپی کن:',t)
+}
+function curUser(){return USER.find(u=>u.id===S.sc)}
+function shareCode(){const u=curUser();if(!u)return;copyText('WIN1:'+btoa(unescape(encodeURIComponent(JSON.stringify({n:u.n,roles:u.roles})))),'کد کپی شد؛ برای دوستانت بفرست تا در «+ سناریوی جدید» وارد کنند.')}
+function copyJson(){const u=curUser();if(!u)return;copyText(JSON.stringify({n:u.n,roles:u.roles},null,1),'JSON کپی شد؛ داخل آرایه‌ی scenarios.json بگذار.')}
+function importCode(){const el=document.getElementById('imp'),t=(el.value||'').trim().replace(/^WIN1:/,'').replace(/\s/g,'');
+ try{const c=clean(JSON.parse(decodeURIComponent(escape(atob(t)))));if(!c)throw 0;c.id='u'+Date.now();USER.push(c);regUser(c);saveUser();pickSc(c.id)}catch(e){alert('کد معتبر نیست.')}}
+function saveUser(){try{localStorage.setItem('win.sc',JSON.stringify(USER))}catch(e){}}
+function delScenario(){if(!confirm('این سناریو حذف شود؟'))return;USER=USER.filter(u=>u.id!==S.sc);delete SC[S.sc];saveUser();pickSc('moz')}
+function bAdd(){const d=S.bd,n=d.n.trim();if(!n)return;S.bld.roles.push({n,t:d.t,c:Math.max(1,Math.min(10,d.c)),d:d.ds.trim()});S.bd.n='';S.bd.ds='';render()}
+function bDel(j){S.bld.roles.splice(j,1);render()}
+function bSave(){const b=S.bld,name=b.name.trim();if(!name||!b.roles.length)return;const u={id:'u'+Date.now(),n:name,roles:b.roles};USER.push(u);regUser(u);saveUser();S.bld={name:'',roles:[]};pickSc(u.id);if(S.pub)publishCur()}
+const esc=v=>String(v).replace(/"/g,'&quot;');
+function cusUI(){
+  const b=S.bld,d=S.bd,t=b.roles.reduce((a,r)=>a+r.c,0);
+  return `<div class="box"><div class="rn" style="margin-bottom:8px">وارد کردن سناریو با کد</div><input id="imp" placeholder="کد WIN1:… را اینجا بچسبان"><button class="btn ghost" onclick="importCode()">افزودن با کد</button></div>
+  <div class="box"><input placeholder="نام سناریو" value="${esc(b.name)}" oninput="S.bld.name=this.value;document.getElementById('sv').disabled=!(S.bld.name.trim()&&S.bld.roles.length)">
+  <div class="rn" style="margin:6px 0">افزودن نقش</div>
+  <input placeholder="نام نقش" value="${esc(d.n)}" oninput="S.bd.n=this.value">
+  <input placeholder="توضیح نقش (اختیاری)" value="${esc(d.ds)}" oninput="S.bd.ds=this.value">
+  <div class="row" style="gap:8px"><select onchange="S.bd.t=this.value" style="flex:2"><option value="c" ${d.t==='c'?'selected':''}>تیم شهر</option><option value="m" ${d.t==='m'?'selected':''}>تیم مافیا</option><option value="x" ${d.t==='x'?'selected':''}>مستقل</option></select>
+  <input type="number" min="1" max="10" value="${d.c}" oninput="S.bd.c=+this.value||1" style="flex:1" aria-label="تعداد"></div>
+  <button class="btn ghost" onclick="bAdd()">افزودن نقش</button></div>
+  <div class="box">${b.roles.length?b.roles.map((r,j)=>`<div class="rl row"><div><div class="rn"><span class="tag t${r.t}"></span>${h(r.n)}</div>${r.d?`<div class="rd">${h(r.d)}</div>`:''}</div><div><b>×${fa(r.c)}</b> <button class="del" onclick="bDel(${j})">حذف</button></div></div>`).join(''):'<div class="rd">هنوز نقشی اضافه نکرده‌ای.</div>'}</div>
+  <div class="sum">مجموع: ${fa(t)} بازیکن</div>
+  ${`<label class="rd" style="display:block;margin-bottom:6px"><input type="checkbox" ${S.pub?'checked':''} onchange="S.pub=this.checked" style="width:auto;padding:0;margin:0 0 0 6px">بعد از ذخیره، برای همه‌ی گوشی‌ها ثبت شود</label>`}
+  <button id="sv" class="btn" onclick="bSave()" ${b.name.trim()&&b.roles.length?'':'disabled'}>ذخیره‌ی سناریو</button>
+  <div class="box" style="margin-top:14px"><div class="rn" style="margin-bottom:6px">سرور اشتراک (برای ثبت خودکار روی همه‌ی گوشی‌ها)</div><input id="srv" placeholder="https://example.ir/api.php" value="${esc(SYNC_URL)}" style="direction:ltr"><button class="btn ghost" onclick="setSrv()">ذخیره‌ی آدرس سرور</button></div>`;
+}
+function scBtns(){return `<div class="opts g">${Object.keys(SC).filter(k=>k!=='cus').sort((x,y)=>{const r=k=>k.startsWith('cat')?1:(SC[k].u?2:0);return r(x)-r(y)}).concat('cus').map(k=>[k,SC[k]]).map(([k,v])=>`<button class="opt" aria-pressed="${k===S.sc}" onclick="pickSc('${k}')"><b>${v.n}</b><small>${v.s}</small></button>`).join('')}</div>`}
+function pickZ(z){S.z=z;render()}
+const DIRS=[['rotateY(180deg)','rotateY(180deg)'],['rotateY(-180deg)','rotateY(180deg)'],['rotateX(180deg)','rotateX(180deg)'],['rotateX(-180deg)','rotateX(180deg)']];
+let LD=-1;
+function pickDir(){let k;do{k=ri(4)}while(k===LD);LD=k;return DIRS[k]}
+let T=null;
+function tap(){
+  if(S.flip){next();return}S.flip=true;
+  const cd=document.querySelector('.card'),d=pickDir();cd.querySelector('.front').style.transform=d[1];cd.style.transform=d[0];
+  document.getElementById('hint').textContent='بعد از ۲ ثانیه یا با لمس دوباره، نفر بعدی';
+  document.getElementById('bar').classList.add('go');
+  T=setTimeout(next,2000);
+}
+function next(){clearTimeout(T);S.flip=false;if(S.i+1>=S.order.length)S.phase='done';else S.i++;render()}
+function back(){S.phase='setup';render()}
+function toggleList(){S.list=!S.list;render()}
+function theme(){const r=document.documentElement,d=r.dataset.theme;r.dataset.theme=(d||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))==='dark'?'light':'dark'}
+function render(){
+  const a=document.getElementById('app');
+  if(S.phase==='setup'){
+    const sc=SC[S.sc],sizes=Object.keys(sc.z).map(Number);
+    if(S.sc==='cus'){a.innerHTML=scBtns()+cusUI();return}
+    a.innerHTML=`${scBtns()}
+    <div class="opts">${sizes.map(z=>`<button class="opt chip" aria-pressed="${z===S.z}" onclick="pickZ(${z})">${fa(z)} نفره</button>`).join('')}</div>
+    <div class="box">${sc.z[S.z].map(([id,c])=>{const r=R[id];return `<div class="rl row"><div><div class="rn"><span class="tag t${r[1]}"></span>${r[0]}</div><div class="rd">${r[2]}</div></div><div class="cnt">×${fa(c)}</div></div>`}).join('')}</div>
+    <button class="btn" onclick="shuffle()">شافل نقش‌ها و شروع پخش</button>${sc.u?'<button class="btn" onclick="publishCur()">ثبت برای همه گوشی‌ها</button>':''}${SYNC_URL&&sc.sid&&adminKey(false)?'<button class="btn ghost" onclick="delShared()">حذف از همه‌ی گوشی‌ها (ناظر)</button>':''}${sc.u?'<button class="btn ghost" onclick="shareCode()">اشتراک‌گذاری با کد</button><button class="btn ghost" onclick="copyJson()">کپی JSON (برای افزودن به پیش‌فرض‌ها)</button><button class="btn ghost" onclick="copyCatalog()">کپی کاتالوگ کامل (برای scenarios.json)</button><button class="btn ghost" onclick="delScenario()">حذف این سناریو</button>':''}`;
+  }else if(S.phase==='reveal'){
+    const r=S.order[S.i],last=S.i+1>=S.order.length;
+    a.innerHTML=`<div class="prog">بازیکن ${fa(S.i+1)} از ${fa(S.order.length)}</div>
+    <div class="scene"><div class="card ${S.flip?'flip':''}" onclick="tap()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tap()}" aria-label="برگرداندن کارت">
+    <div class="face back"><small>بازیکن ${fa(S.i+1)}</small>${WINSVG}<small>برای دیدن نقش، لمس کن</small></div>
+    <div class="face front"><span class="team" style="background:var(--${TC[r[1]]})">${r[3]||TN[r[1]]}</span><h2>${r[0]}</h2><p>${r[2]}</p></div></div></div>
+    <div class="prog" id="hint">${last?'این آخرین کارت است؛ لمس کن':'کارت را لمس کن تا نقش را ببینی'}</div>
+    <div class="bar"><i id="bar"></i></div>`;
+  }else{
+    a.innerHTML=`<div class="box"><div class="rn">همه نقش‌ها پخش شد.</div><div class="rd">گوشی را به گرداننده بده تا بازی شروع شود.</div></div>
+    <button class="btn ghost" onclick="toggleList()">${S.list?'پنهان کردن فهرست':'فهرست نقش‌ها (فقط گرداننده)'}</button>
+    ${S.list?`<div class="box list" style="margin-top:12px"><ul>${S.order.map((r,j)=>`<li><span>بازیکن ${fa(j+1)}</span><span><span class="tag t${r[1]}"></span>${r[0]}</span></li>`).join('')}</ul></div>`:''}
+    <button class="btn" onclick="shuffle()">شافل دوباره</button>
+    <button class="btn ghost" onclick="back()">بازگشت به انتخاب سناریو</button>`;
+  }
+}
+loadCatalog();loadUser();render();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadCatalog()});
+if('serviceWorker' in navigator&&location.protocol.startsWith('http')){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+</script>
+</body>
+</html>
