@@ -201,7 +201,7 @@ function adminKey(ask){let k='';try{k=localStorage.getItem('win.key')||''}catch(
 async function api(body){const k=adminKey(true);if(!k||!SYNC_URL)throw 0;const r=await fetch(SYNC_URL,{method:'POST',headers:{'Content-Type':'application/json','X-Key':k},body:JSON.stringify(body)});
  if(r.status===403){try{localStorage.removeItem('win.key')}catch(e){}throw 1}if(!r.ok)throw 2;return r.json()}
 async function publishCur(){const u=curUser();if(!u)return;
- if(!SYNC_URL){alert('سرور اشتراک تنظیم نشده. آدرس HTTPS سرور را در صفحه‌ی «+ سناریوی جدید» (پایین) وارد کن؛ راهنمایش داخل WIN-server.zip است.');return}
+ if(!SYNC_URL){copyCatalog();return}
  try{const l=await api({op:'add',n:u.n,roles:u.roles});USER=USER.filter(x=>x.id!==u.id);delete SC[u.id];saveUser();try{localStorage.setItem('win.cat',JSON.stringify(l))}catch(e){}applyCat(l);
   const m=Object.keys(SC).find(k=>k.startsWith('cat')&&SC[k].n===h(u.n));alert('برای همه ثبت شد؛ هر گوشی بار بعدی که اپ را با اینترنت باز کند، آن را می‌گیرد.');pickSc(m||'moz')}
  catch(e){alert(e===1?'رمز ناظر اشتباه است.':e===0?'رمز ناظر لازم است.':'ثبت نشد؛ اینترنت و آدرس سرور را بررسی کن. سناریو روی همین گوشی ذخیره ماند.')}}
@@ -270,7 +270,7 @@ function render(){
     a.innerHTML=`${scBtns()}
     <div class="opts">${sizes.map(z=>`<button class="opt chip" aria-pressed="${z===S.z}" onclick="pickZ(${z})">${fa(z)} نفره</button>`).join('')}</div>
     <div class="box">${sc.z[S.z].map(([id,c])=>{const r=R[id];return `<div class="rl row"><div><div class="rn"><span class="tag t${r[1]}"></span>${r[0]}</div><div class="rd">${r[2]}</div></div><div class="cnt">×${fa(c)}</div></div>`}).join('')}</div>
-    <button class="btn" onclick="shuffle()">شافل نقش‌ها و شروع پخش</button>${sc.u?'<button class="btn" onclick="publishCur()">ثبت برای همه گوشی‌ها</button>':''}${SYNC_URL&&sc.sid&&adminKey(false)?'<button class="btn ghost" onclick="delShared()">حذف از همه‌ی گوشی‌ها (ناظر)</button>':''}${sc.u?'<button class="btn ghost" onclick="shareCode()">اشتراک‌گذاری با کد</button><button class="btn ghost" onclick="copyJson()">کپی JSON (برای افزودن به پیش‌فرض‌ها)</button><button class="btn ghost" onclick="copyCatalog()">کپی کاتالوگ کامل (برای scenarios.json)</button><button class="btn ghost" onclick="delScenario()">حذف این سناریو</button>':''}`;
+    <button class="btn" onclick="shuffle()">شافل نقش‌ها و شروع پخش</button>${sc.u?'<button class="btn" onclick="publishCur()">'+(SYNC_URL?'ثبت برای همه گوشی‌ها':'ثبت برای همه (کپی برای GitHub)')+'</button>'+(SYNC_URL?'':'<div class="rd" style="margin:6px 0 10px">بعد از کپی: در GitHub فایل scenarios.json را باز کن، آیکون مداد را بزن، همه‌ی محتوا را با متن کپی‌شده جایگزین کن و Commit changes را بزن.</div>'):''}${SYNC_URL&&sc.sid&&adminKey(false)?'<button class="btn ghost" onclick="delShared()">حذف از همه‌ی گوشی‌ها (ناظر)</button>':''}${sc.u?'<button class="btn ghost" onclick="shareCode()">اشتراک‌گذاری با کد</button><button class="btn ghost" onclick="copyJson()">کپی JSON (برای افزودن به پیش‌فرض‌ها)</button><button class="btn ghost" onclick="copyCatalog()">کپی کاتالوگ کامل (برای scenarios.json)</button><button class="btn ghost" onclick="delScenario()">حذف این سناریو</button>':''}`;
   }else if(S.phase==='reveal'){
     const r=S.order[S.i],last=S.i+1>=S.order.length;
     a.innerHTML=`<div class="prog">بازیکن ${fa(S.i+1)} از ${fa(S.order.length)}</div>
